@@ -1,0 +1,125 @@
+:root {
+  --primary: #5575ff;
+  // --success: #67c23a;
+  // --warning: #e6a23c;
+  --danger: #ff583d;
+  // --info: #909399;
+  --btn-primary: #1c7bff;
+  --btn-regular: #9d6fff;
+  --text-primary: #333333;
+  --text-regular: #666666;
+  // --text-secondary: #909399;
+  // --text-placeholder: #c0c4cc;
+  --sub: #e9f0ff;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 500;
+  word-spacing: 1px;
+  word-break: break-word;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+// SF Pro Text
+html,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: SF Pro Text, PingFang SC, Source Sans, Microsoft Yahei,
+    sans-serif;
+}
+
+a {
+  cursor: pointer;
+  color: var(--primary);
+  text-decoration: none;
+  // border-bottom: 1px solid var(--primary);
+}
+
+body {
+  background: #f2f2f2;
+  color: #333333;
+  #unipass {
+    background: #ffffff;
+  }
+}
+
+.iconfont {
+  display: inline-block;
+}
+
+// dark mode
+.dark-mode {
+  body {
+    background: #1e1e20;
+    color: rgba(255, 255, 255, 0.94);
+    #unipass {
+      background: #131317;
+    }
+  }
+}
+
+// mobile css
+@media (max-width: 500px) {
+  .el-message {
+    min-width: 300px !important;
+  }
+  .el-message-box {
+    width: 300px !important;
+  }
+}
+
+// pc css
+@media (min-width: 1024px) {
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-corner,
+  ::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(102, 128, 153, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(102, 128, 153, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 128, 153, 0.5);
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    background: rgba(102, 128, 153, 0.6);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+// guide routing https://www.nuxtjs.cn/guide/routing
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+  transform: translate3d(0, 15px, 0);
+}

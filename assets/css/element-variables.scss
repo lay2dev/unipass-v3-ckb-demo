@@ -1,0 +1,15 @@
+// 改变主题色变量
+$--color-primary: #5575ff; // 主题
+// $--color-success: #67c23a; // 成功
+// $--color-warning: #e6a23c; // 警告
+$--color-danger: #ff583d; // 危险
+// $--color-info: #909399; // 信息
+$--color-text-primary: #333333; // 主要文字
+$--color-text-regular: #666666; // 常规文字
+// $--color-text-secondary: #909399; // 次要文字
+// $--color-text-placeholder: #c0c4cc; // 占位文字
+
+// 改变 icon 字体路径变量，必需
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import '~element-ui/packages/theme-chalk/src/index';
