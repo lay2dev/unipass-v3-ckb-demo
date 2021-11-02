@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="page-demo">
     <b>UniPass Demo</b>
     <br />
     <div>
@@ -103,3 +103,11 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="stylus">
+#page-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
