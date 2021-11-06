@@ -2,12 +2,12 @@
   <div id="page-demo">
     <b>UniPass Demo</b>
     <br />
-    <div>
-      <br />
-      <h3>{{ username }}</h3>
-      <br />
-    </div>
     <div v-if="username">
+      <div>
+        <br />
+        <h3>{{ username }}</h3>
+        <br />
+      </div>
       <el-button type="info" @click="logout">logout</el-button>
       <!-- <el-button type="primary">home</el-button> -->
     </div>
@@ -15,41 +15,85 @@
       <el-button type="primary" @click="connect">login</el-button>
     </div>
     <br />
-    <div>
-      <br />
-      <h3>hash message</h3>
-      <el-input v-model="message" type="textarea" :rows="2"> </el-input>
-      <div>
-        <h3>hash way</h3>
-        <el-radio v-model="hash" label="sha256">sha256</el-radio>
-        <el-radio v-model="hash" label="sha3">sha3</el-radio>
-        <el-radio v-model="hash" label="blake2b">blake2b</el-radio>
-      </div>
-      <br />
-      <div>
-        <el-button type="primary" @click="authorize">authorize</el-button>
-      </div>
-      <br />
-      <div v-if="signData">
-        <h3>sign data</h3>
-        <el-input v-model="signData" type="textarea" :rows="8"> </el-input>
-      </div>
-    </div>
+    <el-tabs v-model="activeTab">
+      <el-tab-pane label="CKB Transaction" name="first">
+        <div>Your Address: {{ myAddress }}</div>
+        <div>Your Balance: {{ myBalance }} CKB</div>
+        <br />
+        <div class="demo-input-suffix">
+          Transfer CKB To: <el-input v-model="toAddress"></el-input>
+        </div>
+        <br />
+        <div>Amount: <el-input v-model="toAmount"></el-input></div>
+        <br />
+        <div><el-button type="primary" @click="sendCKB">send</el-button></div>
+
+        <div>{{ txHash }}</div>
+      </el-tab-pane>
+      <el-tab-pane label="Sign Message" name="second">
+        <div>
+          <br />
+          <h3>Message:</h3>
+          <el-input v-model="message" type="textarea" :rows="2"> </el-input>
+          <div>
+            <h3>Hash Algorithm:</h3>
+            <el-radio v-model="hash" label="sha256">sha256</el-radio>
+            <el-radio v-model="hash" label="sha3">sha3</el-radio>
+            <el-radio v-model="hash" label="blake2b">blake2b</el-radio>
+          </div>
+          <br />
+          <div>
+            <el-button type="primary" @click="authorize">authorize</el-button>
+          </div>
+          <br />
+          <div v-if="sig">
+            <h3>Signature:</h3>
+            <el-input v-model="sig" type="textarea" :rows="8"> </el-input>
+          </div>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import UP from 'up-core'
-import { UPAuthMessage, AUTH_HASH } from '~/assets/js/up-types'
+import UP, { UPAuthMessage, AUTH_HASH } from 'up-core'
+import UPCKB from 'up-ckb'
+import {
+  Address,
+  IndexerCollector,
+  ChainID,
+  DepType,
+  CellDep,
+  OutPoint,
+  AddressType,
+  Amount,
+} from '@lay2/pw-core'
+import { UPCoreSimpleProvier } from '~/assets/js/up-core-simple-provider'
+
+const AGGREGATOR_URL = 'http://47.243.172.144:3030'
+const ASSET_LOCK_CODE_HASH =
+  '0xd3f6d12ac220b3f7e104f3869e72487f8940adb13a526a2abd775c2cd5040f77'
+const ASSET_LOCK_DEP_TX_HASH =
+  '0x63a0f3cd03a4502238e130b68f4c3e814cc160b144c5eec888ec133104b002f3'
+// const CKB_NODE_URL = 'https://aggron.ckb.dev'
+const CKB_NODE_URL = 'http://47.243.172.144:8114'
+const CKB_INDEXER_URL = 'https://testnet.ckb.dev/indexer'
 
 export default Vue.extend({
   data() {
     return {
       username: '',
       message: 'TO BE SIGNED MESSAGE abc',
-      signData: '',
+      sig: '',
       hash: 'sha256' as AUTH_HASH,
+      activeTab: 'first',
+      myAddress: '',
+      myBalance: '0.00',
+      toAddress: '',
+      toAmount: '0.00',
+      txHash: '',
     }
   },
   mounted() {
@@ -58,6 +102,17 @@ export default Vue.extend({
       'http://localhost:3000/login',
       'http://localhost:3000/sign',
     )
+
+    UPCKB.config({
+      aggregatorUrl: AGGREGATOR_URL,
+      chainID: ChainID.ckb_testnet,
+      ckbNodeUrl: CKB_NODE_URL,
+      upLockCodeHash: ASSET_LOCK_CODE_HASH,
+      upLockDep: new CellDep(
+        DepType.code,
+        new OutPoint(ASSET_LOCK_DEP_TX_HASH, '0x0'),
+      ),
+    })
   },
   methods: {
     async connect() {
@@ -66,6 +121,13 @@ export default Vue.extend({
         const account = await UP.connect()
         this.username = account.username
         console.log('account', account)
+        const address: Address = UPCKB.getCKBAddress(this.username)
+        this.myAddress = address.toCKBAddress()
+
+        const indexerCollector = new IndexerCollector(CKB_INDEXER_URL)
+        const balance = await indexerCollector.getBalance(address as Address)
+        console.log('balance', balance)
+        this.myBalance = balance.toString()
       } catch (err) {
         this.$message.error(err as string)
         console.log('connect err', err)
@@ -78,7 +140,7 @@ export default Vue.extend({
     },
     async authorize() {
       console.log('authorize clicked')
-      this.signData = ''
+      this.sig = ''
       console.log({
         username: this.username,
         message: this.message,
@@ -94,10 +156,32 @@ export default Vue.extend({
           ),
         )
         console.log('resp', resp)
-        this.signData = JSON.stringify(resp)
+        this.sig = JSON.stringify(resp)
       } catch (err) {
         this.$message.error(err as string)
         console.log('auth err', err)
+      }
+    },
+    async sendCKB() {
+      try {
+        const toAddress = new Address(this.toAddress, AddressType.ckb)
+        const toAmount = new Amount(this.toAmount)
+        console.log('send ckb target', toAddress, toAmount)
+
+        // TODO: send ckb tx
+
+        const txHash = await UPCKB.sendCKB(
+          toAddress,
+          toAmount,
+          new UPCoreSimpleProvier(this.username, ASSET_LOCK_CODE_HASH),
+        )
+
+        this.txHash = txHash
+
+        console.log('send ckb success', txHash)
+      } catch (err) {
+        this.$message.error(err as string)
+        console.log('err', err)
       }
     },
   },

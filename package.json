@@ -7,8 +7,9 @@
     "build": "nuxt generate",
     "lint": "eslint --fix --ext \".js,.vue\" --ignore-path .gitignore .",
     "up-core": "git clone --depth=1 git@github.com:lay2dev/up-core.git && rm -rf node_modules/up-core && cd up-core && yarn && yarn build && cd .. && cp up-core -rf node_modules/up-core"
-     },
+  },
   "dependencies": {
+    "@lay2/pw-core": "^0.4.0-alpha.12",
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/onesignal": "^3.0.0-beta.16",
     "@nuxtjs/pwa": "^3.3.5",
@@ -16,8 +17,9 @@
     "cross-fetch": "^3.1.4",
     "element-ui": "^2.15.1",
     "ethereumjs-util": "^7.1.2",
-    "v-clipboard": "^2.2.3",
-    "up-core": "file:../up-core"
+    "up-ckb": "../up-ckb",
+    "up-core": "../up-core",
+    "v-clipboard": "^2.2.3"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.3",
