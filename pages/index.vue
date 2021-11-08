@@ -58,8 +58,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import UP, { UPAuthMessage, AUTH_HASH } from 'up-core'
-import UPCKB from 'up-ckb'
+import UP, { UPAuthMessage, AUTH_HASH } from 'up-core-test'
+import UPCKB from 'up-ckb-alpha-test'
 import {
   Address,
   IndexerCollector,
@@ -72,13 +72,12 @@ import {
 } from '@lay2/pw-core'
 import { UPCoreSimpleProvier } from '~/assets/js/up-core-simple-provider'
 
-const AGGREGATOR_URL = 'http://47.243.172.144:3030'
+const AGGREGATOR_URL = 'https://t.aggregator.unipass.id'
 const ASSET_LOCK_CODE_HASH =
   '0xd3f6d12ac220b3f7e104f3869e72487f8940adb13a526a2abd775c2cd5040f77'
 const ASSET_LOCK_DEP_TX_HASH =
   '0x63a0f3cd03a4502238e130b68f4c3e814cc160b144c5eec888ec133104b002f3'
-// const CKB_NODE_URL = 'https://aggron.ckb.dev'
-const CKB_NODE_URL = 'http://47.243.172.144:8114'
+const CKB_NODE_URL = 'https://testnet.ckb.dev'
 const CKB_INDEXER_URL = 'https://testnet.ckb.dev/indexer'
 
 export default Vue.extend({
@@ -98,9 +97,9 @@ export default Vue.extend({
   },
   mounted() {
     UP.config(
-      'http://localhost:3000/login',
-      'http://localhost:3000/login',
-      'http://localhost:3000/sign',
+      't.app.unipass.id',
+      'https://t.app.unipass.id/login',
+      'https://t.app.unipass.id/sign',
     )
 
     UPCKB.config({
@@ -168,8 +167,7 @@ export default Vue.extend({
         const toAmount = new Amount(this.toAmount)
         console.log('send ckb target', toAddress, toAmount)
 
-        // TODO: send ckb tx
-
+        // send ckb tx
         const txHash = await UPCKB.sendCKB(
           toAddress,
           toAmount,
