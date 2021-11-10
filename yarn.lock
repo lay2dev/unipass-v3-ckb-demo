@@ -11123,10 +11123,10 @@ up-ckb-alpha-test@^0.1.0:
     "@lay2/pw-core" "^0.4.0-alpha.12"
     axios "^0.24.0"
 
-up-core-test@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/up-core-test/-/up-core-test-0.1.0.tgz#d85d985d6bc3ac810f7c43a7d8b345629ebbd90c"
-  integrity sha512-B9dG08/N2hdsjNvY+2I1ocu9Ks17FuKWTkzM4TMR+QQpUf5XH6gOadOAy02oOBju7YlEyQeSh9ygVFk5Jt4IgQ==
+up-core-test@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/up-core-test/-/up-core-test-0.1.1.tgz#d9919a8124ed093989da53ff8281cfa7887d9da1"
+  integrity sha512-5Cx4RvfPxzeMnhvu+l0DCEdecwc9dUlJF9TRdtvqX7we0JuUEDk1TYHXe/Sptd4IWcYxHKUBz7P6JLQzLY4IEA==
 
 upath@^1.1.1:
   version "1.2.0"

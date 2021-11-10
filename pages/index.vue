@@ -35,12 +35,6 @@
           <br />
           <h3>Message:</h3>
           <el-input v-model="message" type="textarea" :rows="2"> </el-input>
-          <div>
-            <h3>Hash Algorithm:</h3>
-            <el-radio v-model="hash" label="sha256">sha256</el-radio>
-            <el-radio v-model="hash" label="sha3">sha3</el-radio>
-            <el-radio v-model="hash" label="blake2b">blake2b</el-radio>
-          </div>
           <br />
           <div>
             <el-button type="primary" @click="authorize">authorize</el-button>
@@ -58,7 +52,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import UP, { UPAuthMessage, AUTH_HASH } from 'up-core-test'
+import UP, { UPAuthMessage } from 'up-core-test'
 import UPCKB from 'up-ckb-alpha-test'
 import {
   Address,
@@ -86,7 +80,6 @@ export default Vue.extend({
       username: '',
       message: 'TO BE SIGNED MESSAGE abc',
       sig: '',
-      hash: 'sha256' as AUTH_HASH,
       activeTab: 'first',
       myAddress: '',
       myBalance: '0.00',
@@ -143,16 +136,10 @@ export default Vue.extend({
       console.log({
         username: this.username,
         message: this.message,
-        hash: this.hash,
       })
       try {
         const resp = await UP.authorize(
-          new UPAuthMessage(
-            'PLAIN_MSG',
-            this.username,
-            this.message,
-            this.hash,
-          ),
+          new UPAuthMessage('PLAIN_MSG', this.username, this.message),
         )
         console.log('resp', resp)
         this.sig = JSON.stringify(resp)
