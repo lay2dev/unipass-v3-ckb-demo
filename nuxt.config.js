@@ -64,30 +64,13 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
+    // '@nuxtjs/pwa',
     // '@nuxtjs/onesignal',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // baseURL: process.env.UNIPASS_URL,
-  },
-
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
-  pwa: {
-    // https://pwa.nuxtjs.org/manifest
-    manifest: {
-      name: 'UniPass',
-      short_name: 'UniPass',
-      description: 'UniPass',
-      lang: 'zh',
-      background_color: '#e9f0ff',
-      theme_color: '#3179ff',
-    },
-    // https://pwa.nuxtjs.org/icon
-    icon: {
-      fileName: 'icon.png',
-    },
   },
 
   router: {
