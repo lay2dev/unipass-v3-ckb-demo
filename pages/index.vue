@@ -136,7 +136,7 @@ export default Vue.extend({
   mounted() {
     UP.config(
       't.app.unipass.id',
-      'https://t.app.unipass.id/login',
+      'https://t.app.unipass.id/connect',
       'https://t.app.unipass.id/sign',
       // 'localhost:3000',
       // 'http://localhost:3000/login',
