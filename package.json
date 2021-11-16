@@ -5,8 +5,7 @@
   "scripts": {
     "start": "nuxt -open",
     "build": "nuxt generate",
-    "lint": "eslint --fix --ext \".js,.vue\" --ignore-path .gitignore .",
-    "up-core": "git clone --depth=1 git@github.com:lay2dev/up-core.git && rm -rf node_modules/up-core && cd up-core && yarn && yarn build && cd .. && cp up-core -rf node_modules/up-core"
+    "lint": "eslint --fix --ext \".js,.vue\" --ignore-path .gitignore ."
   },
   "dependencies": {
     "@lay2/pw-core": "^0.4.0-alpha.12",

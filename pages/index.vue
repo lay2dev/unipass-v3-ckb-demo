@@ -68,11 +68,16 @@ import {
 import { UPCoreSimpleProvier } from '~/assets/js/up-core-simple-provider'
 const NodeRSA = require('node-rsa')
 
-const AGGREGATOR_URL = 'https://t.aggregator.unipass.id'
+const AGGREGATOR_URL = 'https://t.aggregator.unipass.id/dev/snapshot/'
+// const ASSET_LOCK_CODE_HASH =
+//   '0xd3f6d12ac220b3f7e104f3869e72487f8940adb13a526a2abd775c2cd5040f77'
+// const ASSET_LOCK_DEP_TX_HASH =
+//   '0x30eaed1d7609cffe7a3074a6216117693308f1324ded3bc74ba9c57ffe968f8b'
 const ASSET_LOCK_CODE_HASH =
-  '0xd3f6d12ac220b3f7e104f3869e72487f8940adb13a526a2abd775c2cd5040f77'
+  '0x3e1eb7ed4809b2d60650be96a40abfbdafb3fb942b7b37ec7709e64e2cd0a783'
 const ASSET_LOCK_DEP_TX_HASH =
-  '0x30eaed1d7609cffe7a3074a6216117693308f1324ded3bc74ba9c57ffe968f8b'
+  '0x2e243c7e0fdbfba4e66bdf28c8a26fbfdfe4493c25df5995874625b288f6d74d'
+
 const CKB_NODE_URL = 'https://testnet.ckb.dev'
 const CKB_INDEXER_URL = 'https://testnet.ckb.dev/indexer'
 
@@ -135,9 +140,9 @@ export default Vue.extend({
   },
   mounted() {
     UP.config(
-      't.app.unipass.id',
-      'https://t.app.unipass.id/connect',
-      'https://t.app.unipass.id/authorize',
+      'd.app.unipass.id',
+      'https://d.app.unipass.id/connect',
+      'https://d.app.unipass.id/authorize',
       // 'localhost:3000',
       // 'http://localhost:3000/connect',
       // 'http://localhost:3000/authorize',

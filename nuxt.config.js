@@ -19,7 +19,7 @@ export default {
         src: 'https://cdn.jsdelivr.net/npm/vconsole@latest/dist/vconsole.min.js',
       },
       {
-        src: 'https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js',
+        src: 'https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.6.6/dist/esm/index.min.js',
       },
     ],
   },
