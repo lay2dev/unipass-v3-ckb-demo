@@ -137,10 +137,10 @@ export default Vue.extend({
     UP.config(
       't.app.unipass.id',
       'https://t.app.unipass.id/connect',
-      'https://t.app.unipass.id/sign',
+      'https://t.app.unipass.id/authorize',
       // 'localhost:3000',
-      // 'http://localhost:3000/login',
-      // 'http://localhost:3000/sign',
+      // 'http://localhost:3000/connect',
+      // 'http://localhost:3000/authorize',
     )
 
     UPCKB.config({
