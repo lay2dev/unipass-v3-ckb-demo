@@ -220,6 +220,7 @@ export default Vue.extend({
     },
     async sendCKB() {
       try {
+        UP.initPop()
         const toAddress = new Address(this.toAddress, AddressType.ckb)
         const toAmount = new Amount(this.toAmount)
         console.log('send ckb target', toAddress, toAmount)
