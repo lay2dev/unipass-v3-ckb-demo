@@ -11136,10 +11136,10 @@ up-core-test@^0.1.3:
   resolved "https://registry.yarnpkg.com/up-core-test/-/up-core-test-0.1.3.tgz#1704e3343f67dff412084a9a5083467dfbd8e4b8"
   integrity sha512-CmmHhMQo7/OJMOWBEXqCoPjk8mybB6OVubwwjq12RYut5jlnHnO8/rxxAib21g7HJzOqbd56NQhH2R7QaY9eMQ==
 
-up-core-test@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/up-core-test/-/up-core-test-0.1.4.tgz#e94d5a36bc306851952953fedd1451da26e4e788"
-  integrity sha512-z6H62tw04+Da1G47yPsdy2cokYLDECtH0tojsX7j0jDjVmZj0Ut/S4ZG67kHnE/HIowK5lEnwnhbOKHANQBBxg==
+up-core-test@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/up-core-test/-/up-core-test-0.1.5.tgz#a81a651c2fa8d455a75f1667487f9152972d66bd"
+  integrity sha512-heGjRXRx/79ALCoQQQBCi1rIwHqr83npK3umY+QQipQrlHn0xKz5SLyoSkIxKwix+hsQRce21c3Yonubmhadzw==
 
 upath@^1.1.1:
   version "1.2.0"
