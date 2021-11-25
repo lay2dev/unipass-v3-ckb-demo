@@ -27,7 +27,22 @@
           @submit.native.prevent
         >
           <el-form-item label="Your Address:" prop="address">
-            <el-input v-model="myAddress" disabled readonly />
+            <template #label>
+              <span>Your Address:</span>
+              <i
+                v-show="myAddress"
+                class="iconfont icon-copy sea-background"
+                @click="bindCopy"
+              ></i>
+            </template>
+            <el-input
+              v-model="myAddress"
+              disabled
+              readonly
+              type="textarea"
+              resize="none"
+              :autosize="{ minRows: 1 }"
+            />
           </el-form-item>
           <el-form-item label="Your Balance:" prop="address">
             <el-input v-model="myBalanceFormat" disabled readonly />
@@ -182,6 +197,8 @@ export default Vue.extend({
   mounted() {
     UP.config({
       domain: 't.app.unipass.id',
+      // domain: 'localhost:3000',
+      // protocol: 'http',
     })
 
     UPCKB.config({
@@ -196,6 +213,10 @@ export default Vue.extend({
     })
   },
   methods: {
+    bindCopy() {
+      this.$clipboard(this.myAddress)
+      this.$message.success('CopySucceeded')
+    },
     async connect() {
       console.log('connect clicked')
       try {
@@ -332,6 +353,10 @@ export default Vue.extend({
 
     .body-input {
       margin-top: -20px;
+
+      .icon-copy {
+        cursor: pointer;
+      }
     }
 
     .input {
