@@ -1,44 +1,66 @@
 <template>
-  <div id="page-demo">
-    <b>UniPass Demo</b>
-    <br />
+  <div id="page-demo" class="unipass-page">
+    <i class="backgorund-logo iconfont icon-logo"></i>
+    <div class="head">UniPass Demo</div>
     <div v-if="username">
       <div>
         <br />
         <h3>{{ username }}</h3>
         <br />
       </div>
-      <el-button type="info" @click="logout">logout</el-button>
+      <el-button class="transfer" type="info" @click="logout">logout</el-button>
       <!-- <el-button type="primary">home</el-button> -->
     </div>
     <div v-else>
-      <el-button type="primary" @click="connect">login</el-button>
+      <el-button type="primary" class="transfer login" @click="connect"
+        >login</el-button
+      >
     </div>
-    <br />
-    <el-tabs v-model="activeTab">
+    <el-tabs v-model="activeTab" class="body" type="border-card">
       <el-tab-pane label="CKB Transaction" name="first">
-        <div>Your Address: {{ myAddress }}</div>
-        <div>Your Balance: {{ myBalance }} CKB</div>
+        <el-form
+          ref="form"
+          class="body-input"
+          label-position="top"
+          :model="form"
+          @submit.native.prevent
+        >
+          <el-form-item label="Your Address:" prop="address">
+            <el-input v-model="myAddress" readonly />
+          </el-form-item>
+          <el-form-item label="Your Balance:" prop="address">
+            <el-input v-model="myBalanceFormat" readonly />
+          </el-form-item>
+          <el-form-item label="Transfer CKB To:" prop="address">
+            <el-input v-model="toAddress" clearable />
+          </el-form-item>
+          <el-form-item label="Amount:" prop="address">
+            <el-input v-model="toAmount" clearable />
+          </el-form-item>
+        </el-form>
+
         <br />
-        <div class="demo-input-suffix">
-          Transfer CKB To: <el-input v-model="toAddress"></el-input>
+        <div>
+          <el-button type="primary" class="transfer" @click="sendCKB"
+            >send</el-button
+          >
         </div>
-        <br />
-        <div>Amount: <el-input v-model="toAmount"></el-input></div>
-        <br />
-        <div><el-button type="primary" @click="sendCKB">send</el-button></div>
 
         <div>{{ txHash }}</div>
       </el-tab-pane>
       <el-tab-pane label="Sign Message" name="second">
         <div>
           <br />
-          <h3>Message:</h3>
+          <h3 class="input">Message:</h3>
           <el-input v-model="message" type="textarea" :rows="2"> </el-input>
           <br />
-          <div>
-            <el-button type="primary" @click="authorize">authorize</el-button>
-            <el-button type="primary" @click="verifySig">verify</el-button>
+          <div class="message">
+            <el-button type="primary" class="message-button" @click="authorize"
+              >authorize</el-button
+            >
+            <el-button type="primary" class="message-button" @click="verifySig"
+              >verify</el-button
+            >
           </div>
           <br />
           <div v-if="sig">
@@ -136,7 +158,13 @@ export default Vue.extend({
       toAddress: '',
       toAmount: '0.00',
       txHash: '',
+      form: {},
     }
+  },
+  computed: {
+    myBalanceFormat(): string {
+      return this.myBalance + ' CKB'
+    },
   },
   mounted() {
     UP.config({
@@ -241,8 +269,86 @@ export default Vue.extend({
 
 <style lang="stylus">
 #page-demo {
+  max-width: 480px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  background: #F5F5FF;
+
+  > * {
+    z-index: 1;
+  }
+
+  > .backgorund-logo {
+    font-size: 237px;
+    position: absolute;
+    top: 16px;
+    right: -40px;
+    color: #5575ff;
+    opacity: 0.14;
+    z-index: 0;
+  }
+
+  .head {
+    text-align: left;
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    color: black;
+  }
+
+  .transfer {
+    width: 100%;
+    background: linear-gradient(319.78deg, #1C7BFF 0%, #9D6FFF 109.89%);
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+  .login {
+    margin-top: 50px;
+    font-size: 20px;
+  }
+
+  .body {
+    border-radius: 24px;
+    margin: 30px auto 0px;
+    width: 100%;
+    background: #FFFFFF;
+    padding: 0px 20px 21px;
+
+    .body-input {
+      margin-top: -20px;
+    }
+
+    .input {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+  }
+
+  .message {
+    display: flex;
+    justify-content: space-between;
+
+    .message-button {
+      margin-top: 30px;
+      width: 48%;
+      background: linear-gradient(319.78deg, #1C7BFF 0%, #9D6FFF 109.89%);
+      border-radius: 10px;
+      font-size: 20px;
+    }
+  }
+}
+
+.unipass-page {
+  padding: 24px;
+  padding-top: 29px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  min-height: 100vh;
+  text-align: center;
 }
 </style>

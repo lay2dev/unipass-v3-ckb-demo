@@ -15,7 +15,13 @@ export default {
       },
       { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: '//at.alicdn.com/t/font_2883496_azmp1437rp.css',
+      },
+    ],
     script: [
       {
         src: 'https://cdn.jsdelivr.net/npm/vconsole@latest/dist/vconsole.min.js',
