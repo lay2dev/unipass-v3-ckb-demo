@@ -108,11 +108,11 @@ export default {
 
   // server
   server: {
-    host: '0.0.0.0',
+    // host: '0.0.0.0',
     port: 3100,
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, 'bin/cert.key')),
-      cert: fs.readFileSync(path.resolve(__dirname, 'bin/cert.crt')),
-    },
+    // https: {
+    //   key: fs.readFileSync(path.resolve(__dirname, 'bin/cert.key')),
+    //   cert: fs.readFileSync(path.resolve(__dirname, 'bin/cert.crt')),
+    // },
   },
 }

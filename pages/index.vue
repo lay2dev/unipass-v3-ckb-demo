@@ -199,7 +199,7 @@ export default Vue.extend({
     async connect() {
       console.log('connect clicked')
       try {
-        const account = await UP.connect()
+        const account = await UP.connect({ email: false, evmKeys: true })
         this.username = account.username
         console.log('account', account)
         const address: Address = UPCKB.getCKBAddress(this.username)

@@ -1184,6 +1184,9 @@
     jsbi "^3.1.4"
     keccak "^3.0.0"
 
+"@lay2/up-core@../up-core":
+  version "0.1.6"
+
 "@nervosnetwork/ckb-sdk-utils@^0.41.1":
   version "0.41.1"
   resolved "https://registry.yarnpkg.com/@nervosnetwork/ckb-sdk-utils/-/ckb-sdk-utils-0.41.1.tgz#9d5039214ffdc04de31f1a71d45ce972cac9c285"
@@ -11136,10 +11139,10 @@ up-core-test@^0.1.3:
   resolved "https://registry.yarnpkg.com/up-core-test/-/up-core-test-0.1.3.tgz#1704e3343f67dff412084a9a5083467dfbd8e4b8"
   integrity sha512-CmmHhMQo7/OJMOWBEXqCoPjk8mybB6OVubwwjq12RYut5jlnHnO8/rxxAib21g7HJzOqbd56NQhH2R7QaY9eMQ==
 
-up-core-test@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/up-core-test/-/up-core-test-0.1.5.tgz#a81a651c2fa8d455a75f1667487f9152972d66bd"
-  integrity sha512-heGjRXRx/79ALCoQQQBCi1rIwHqr83npK3umY+QQipQrlHn0xKz5SLyoSkIxKwix+hsQRce21c3Yonubmhadzw==
+up-core-test@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/up-core-test/-/up-core-test-0.1.6.tgz#46d79bdbac6cc0ad26c47f7856ee893c77560f6b"
+  integrity sha512-AhFnaYt/diMJoL2rwPYmVG9BPjq6ShpWC1PaR9fTCoIgUKbOUjSTxLXG19vXasjsyR3JihTHMjGrWUKB/TPZgQ==
 
 upath@^1.1.1:
   version "1.2.0"

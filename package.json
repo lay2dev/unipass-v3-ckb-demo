@@ -18,7 +18,7 @@
     "ethereumjs-util": "^7.1.2",
     "node-rsa": "^1.1.1",
     "up-ckb-alpha-test": "^0.1.1",
-    "up-core-test": "^0.1.5",
+    "up-core-test": "^0.1.6",
     "v-clipboard": "^2.2.3"
   },
   "devDependencies": {
