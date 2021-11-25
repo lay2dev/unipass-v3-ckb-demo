@@ -17,7 +17,12 @@
         login
       </el-button>
     </div>
-    <el-tabs v-model="activeTab" class="body" type="border-card">
+    <el-tabs
+      v-show="username"
+      v-model="activeTab"
+      class="body"
+      type="border-card"
+    >
       <el-tab-pane label="CKB Transaction" name="first">
         <el-form
           ref="form"
@@ -215,7 +220,7 @@ export default Vue.extend({
   methods: {
     bindCopy() {
       this.$clipboard(this.myAddress)
-      this.$message.success('CopySucceeded')
+      this.$message.success('copy succeeded')
     },
     async connect() {
       console.log('connect clicked')
