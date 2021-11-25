@@ -1,6 +1,6 @@
 <template>
   <div id="page-demo" class="unipass-page">
-    <i class="backgorund-logo iconfont icon-logo"></i>
+    <i class="background-logo iconfont icon-logo"></i>
     <div class="head">UniPass Demo</div>
     <div v-if="username">
       <div>
@@ -8,13 +8,14 @@
         <h3>{{ username }}</h3>
         <br />
       </div>
-      <el-button class="transfer" type="info" @click="logout">logout</el-button>
-      <!-- <el-button type="primary">home</el-button> -->
+      <el-button class="transfer" type="primary" @click="logout">
+        logout
+      </el-button>
     </div>
     <div v-else>
-      <el-button type="primary" class="transfer login" @click="connect"
-        >login</el-button
-      >
+      <el-button type="primary" class="transfer login" @click="connect">
+        login
+      </el-button>
     </div>
     <el-tabs v-model="activeTab" class="body" type="border-card">
       <el-tab-pane label="CKB Transaction" name="first">
@@ -26,10 +27,10 @@
           @submit.native.prevent
         >
           <el-form-item label="Your Address:" prop="address">
-            <el-input v-model="myAddress" readonly />
+            <el-input v-model="myAddress" disabled readonly />
           </el-form-item>
           <el-form-item label="Your Balance:" prop="address">
-            <el-input v-model="myBalanceFormat" readonly />
+            <el-input v-model="myBalanceFormat" disabled readonly />
           </el-form-item>
           <el-form-item label="Transfer CKB To:" prop="address">
             <el-input v-model="toAddress" clearable />
@@ -52,7 +53,13 @@
         <div>
           <br />
           <h3 class="input">Message:</h3>
-          <el-input v-model="message" type="textarea" :rows="2"> </el-input>
+          <el-input
+            v-model="message"
+            type="textarea"
+            :autosize="{ minRows: 8, maxRows: 10 }"
+            resize="none"
+          >
+          </el-input>
           <br />
           <div class="message">
             <el-button type="primary" class="message-button" @click="authorize"
@@ -64,8 +71,14 @@
           </div>
           <br />
           <div v-if="sig">
-            <h3>Signature:</h3>
-            <el-input v-model="sig" type="textarea" :rows="8"> </el-input>
+            <h3 class="input">Signature:</h3>
+            <el-input
+              v-model="sig"
+              type="textarea"
+              :autosize="{ minRows: 8, maxRows: 10 }"
+              resize="none"
+            >
+            </el-input>
           </div>
         </div>
       </el-tab-pane>
@@ -279,7 +292,7 @@ export default Vue.extend({
     z-index: 1;
   }
 
-  > .backgorund-logo {
+  > .background-logo {
     font-size: 237px;
     position: absolute;
     top: 16px;
@@ -301,8 +314,6 @@ export default Vue.extend({
 
   .transfer {
     width: 100%;
-    background: linear-gradient(319.78deg, #1C7BFF 0%, #9D6FFF 109.89%);
-    border-radius: 10px;
     font-size: 20px;
   }
 
@@ -316,7 +327,8 @@ export default Vue.extend({
     margin: 30px auto 0px;
     width: 100%;
     background: #FFFFFF;
-    padding: 0px 20px 21px;
+    padding: 0px 0 21px;
+    overflow: hidden;
 
     .body-input {
       margin-top: -20px;
@@ -335,8 +347,6 @@ export default Vue.extend({
     .message-button {
       margin-top: 30px;
       width: 48%;
-      background: linear-gradient(319.78deg, #1C7BFF 0%, #9D6FFF 109.89%);
-      border-radius: 10px;
       font-size: 20px;
     }
   }
