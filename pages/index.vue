@@ -131,7 +131,7 @@ const AGGREGATOR_URL = 'https://t.aggregator.unipass.id/dev/snapshot/'
 const ASSET_LOCK_CODE_HASH =
   '0x3e1eb7ed4809b2d60650be96a40abfbdafb3fb942b7b37ec7709e64e2cd0a783'
 const ASSET_LOCK_DEP_TX_HASH =
-  '0x2e243c7e0fdbfba4e66bdf28c8a26fbfdfe4493c25df5995874625b288f6d74d'
+  '0x72208ac68fe7d532d0c65e32107a8ca2c27c2a495dc1d2928b24cfd894b655fa'
 
 const CKB_NODE_URL = 'https://testnet.ckb.dev'
 const CKB_INDEXER_URL = 'https://testnet.ckb.dev/indexer'
