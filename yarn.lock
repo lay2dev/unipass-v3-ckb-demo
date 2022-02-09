@@ -11122,10 +11122,10 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
-up-ckb-alpha-test@^0.1.2:
-  version "0.1.2"
-  resolved "https://mirrors.cloud.tencent.com/npm/up-ckb-alpha-test/-/up-ckb-alpha-test-0.1.2.tgz#4379367c3fb9cb767cea2e909b3c0390f9aea144"
-  integrity sha512-5J0zfWRtvYHLgLRJopYUL2pgAV8uyczftH37fA/QC6EMk3zx9Ga48L6TAH7W26jQB4HoZHJKCzZrQCUk2Gxo9A==
+up-ckb-alpha-test@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/up-ckb-alpha-test/-/up-ckb-alpha-test-0.1.3.tgz#b758508d47efea95e3984ed2284835cb3a927837"
+  integrity sha512-l65I/4320pP3fFky7j5IIs/NoBxy63oTXPfN7CowAMWe4/tKcKQ5QzIppUUI5xIrnDe4szdi8R4wCFGv2jvfsg==
   dependencies:
     "@lay2/pw-core" "^0.4.0-alpha.12"
     axios "^0.24.0"

@@ -17,7 +17,7 @@
     "element-ui": "^2.15.1",
     "ethereumjs-util": "^7.1.2",
     "node-rsa": "^1.1.1",
-    "up-ckb-alpha-test": "^0.1.2",
+    "up-ckb-alpha-test": "^0.1.3",
     "up-core-test": "^0.1.6",
     "v-clipboard": "^2.2.3"
   },

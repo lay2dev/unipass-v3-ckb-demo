@@ -130,8 +130,6 @@ const AGGREGATOR_URL = 'https://t.aggregator.unipass.id/dev/snapshot/'
 //   '0x30eaed1d7609cffe7a3074a6216117693308f1324ded3bc74ba9c57ffe968f8b'
 const ASSET_LOCK_CODE_HASH =
   '0x3e1eb7ed4809b2d60650be96a40abfbdafb3fb942b7b37ec7709e64e2cd0a783'
-const ASSET_LOCK_DEP_TX_HASH =
-  '0x1f5aba529317ee8c0487e20bedf5f8ad6c19fe48255dd9e27c9ed8545d1eea56'
 
 const CKB_NODE_URL = 'https://testnet.ckb.dev'
 const CKB_INDEXER_URL = 'https://testnet.ckb.dev/indexer'
@@ -207,14 +205,10 @@ export default Vue.extend({
     })
 
     UPCKB.config({
-      aggregatorUrl: AGGREGATOR_URL,
+      upSnapshotUrl: AGGREGATOR_URL,
       chainID: ChainID.ckb_testnet,
       ckbNodeUrl: CKB_NODE_URL,
       upLockCodeHash: ASSET_LOCK_CODE_HASH,
-      upLockDep: new CellDep(
-        DepType.code,
-        new OutPoint(ASSET_LOCK_DEP_TX_HASH, '0x0'),
-      ),
     })
   },
   methods: {
