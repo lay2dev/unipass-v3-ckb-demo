@@ -110,7 +110,13 @@
 import Vue from 'vue'
 import UP, { UPAuthMessage, UPAuthResponse } from 'up-core-test'
 import UPCKB from 'up-ckb-alpha-test'
-import { Address, IndexerCollector, AddressType, Amount } from '@lay2/pw-core'
+import PWCore, {
+  Address,
+  IndexerCollector,
+  AddressType,
+  Amount,
+  ChainID,
+} from '@lay2/pw-core'
 import { UPCoreSimpleProvier } from '~/assets/js/up-core-simple-provider'
 const NodeRSA = require('node-rsa')
 
@@ -183,10 +189,11 @@ export default Vue.extend({
       // domain: 'localhost:3000',
       // protocol: 'http',
     })
-
+    PWCore.setChainId(Number(process.env.PW_CORE_CHAIN_ID))
     UPCKB.config({
       upSnapshotUrl: process.env.AGGREGATOR_URL,
       chainID: Number(process.env.PW_CORE_CHAIN_ID),
+      ckbIndexerUrl: process.env.CKB_INDEXER_URL,
       ckbNodeUrl: process.env.CKB_NODE_URL,
       upLockCodeHash: process.env.ASSET_LOCK_CODE_HASH as string,
     })
