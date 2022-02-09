@@ -3,8 +3,10 @@
   "version": "3.0.0",
   "private": true,
   "scripts": {
-    "start": "nuxt -open",
-    "build": "nuxt generate",
+    "start": "NODE_ENV=dev sh bin/start.sh",
+    "start-win": "set NODE_ENV=dev&&sh bin/start.sh",
+    "build": "sh bin/build.sh",
+    "build-win": "set NODE_ENV=dev&&sh bin/build.sh",
     "lint": "eslint --fix --ext \".js,.vue\" --ignore-path .gitignore ."
   },
   "dependencies": {

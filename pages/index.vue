@@ -114,25 +114,11 @@ import {
   Address,
   IndexerCollector,
   ChainID,
-  DepType,
-  CellDep,
-  OutPoint,
   AddressType,
   Amount,
 } from '@lay2/pw-core'
 import { UPCoreSimpleProvier } from '~/assets/js/up-core-simple-provider'
 const NodeRSA = require('node-rsa')
-
-const AGGREGATOR_URL = 'https://t.aggregator.unipass.id/dev/snapshot/'
-// const ASSET_LOCK_CODE_HASH =
-//   '0xd3f6d12ac220b3f7e104f3869e72487f8940adb13a526a2abd775c2cd5040f77'
-// const ASSET_LOCK_DEP_TX_HASH =
-//   '0x30eaed1d7609cffe7a3074a6216117693308f1324ded3bc74ba9c57ffe968f8b'
-const ASSET_LOCK_CODE_HASH =
-  '0x3e1eb7ed4809b2d60650be96a40abfbdafb3fb942b7b37ec7709e64e2cd0a783'
-
-const CKB_NODE_URL = 'https://testnet.ckb.dev'
-const CKB_INDEXER_URL = 'https://testnet.ckb.dev/indexer'
 
 function getPubkeyFromUPKey(upPubkey: string) {
   const key = new NodeRSA()
@@ -199,16 +185,16 @@ export default Vue.extend({
   },
   mounted() {
     UP.config({
-      domain: 't.app.unipass.id',
+      domain: process.env.UNIPASS_URL,
       // domain: 'localhost:3000',
       // protocol: 'http',
     })
 
     UPCKB.config({
-      upSnapshotUrl: AGGREGATOR_URL,
+      upSnapshotUrl: process.env.AGGREGATOR_URL,
       chainID: ChainID.ckb_testnet,
-      ckbNodeUrl: CKB_NODE_URL,
-      upLockCodeHash: ASSET_LOCK_CODE_HASH,
+      ckbNodeUrl: process.env.CKB_NODE_URL,
+      upLockCodeHash: process.env.ASSET_LOCK_CODE_HASH as string,
     })
   },
   methods: {
@@ -225,7 +211,9 @@ export default Vue.extend({
         const address: Address = UPCKB.getCKBAddress(this.username)
         this.myAddress = address.toCKBAddress()
 
-        const indexerCollector = new IndexerCollector(CKB_INDEXER_URL)
+        const indexerCollector = new IndexerCollector(
+          process.env.CKB_INDEXER_URL as string,
+        )
         const balance = await indexerCollector.getBalance(address as Address)
         console.log('balance', balance)
         this.myBalance = balance.toString()
@@ -285,7 +273,10 @@ export default Vue.extend({
         const txHash = await UPCKB.sendCKB(
           toAddress,
           toAmount,
-          new UPCoreSimpleProvier(this.username, ASSET_LOCK_CODE_HASH),
+          new UPCoreSimpleProvier(
+            this.username,
+            process.env.ASSET_LOCK_CODE_HASH as string,
+          ),
         )
 
         this.txHash = txHash
