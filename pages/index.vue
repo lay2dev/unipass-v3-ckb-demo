@@ -118,50 +118,7 @@ import PWCore, {
   ChainID,
 } from '@lay2/pw-core'
 import { UPCoreSimpleProvier } from '~/assets/js/up-core-simple-provider'
-const NodeRSA = require('node-rsa')
-
-function getPubkeyFromUPKey(upPubkey: string) {
-  const key = new NodeRSA()
-
-  const pubkeyBuffer = Buffer.from(upPubkey.replace('0x', ''), 'hex')
-  const e = pubkeyBuffer.slice(0, 4).readUInt32BE(0)
-  const n = pubkeyBuffer.slice(4)
-
-  key.importKey(
-    {
-      e,
-      n,
-    },
-    'components-public',
-  )
-  key.setOptions({ signingScheme: 'pkcs1-sha256' })
-
-  return key
-}
-
-function verifyUniPassSig(msg: string, authResp: UPAuthResponse): boolean {
-  const { keyType, pubkey, sig } = authResp
-  if (keyType === 'RsaPubkey') {
-    const key = getPubkeyFromUPKey(pubkey)
-
-    // prefix message for plain msg
-    let messageBuffer = Buffer.from(msg)
-    const prefix = Buffer.from(
-      `\u0018UniPass Signed Message:\n${messageBuffer.length.toString()}`,
-      'utf-8',
-    )
-    messageBuffer = Buffer.concat([prefix, messageBuffer])
-
-    const ret = key.verify(
-      messageBuffer,
-      Buffer.from(sig.replace('0x', ''), 'hex'),
-    )
-
-    return ret
-  } else {
-    throw new Error(`UnSupported keyType ${keyType}`)
-  }
-}
+import { verifyUniPassSig } from '~/assets/js/up-sig-verify'
 
 export default Vue.extend({
   data() {
@@ -191,7 +148,7 @@ export default Vue.extend({
     })
     PWCore.setChainId(Number(process.env.PW_CORE_CHAIN_ID))
     UPCKB.config({
-      upSnapshotUrl: process.env.AGGREGATOR_URL,
+      upSnapshotUrl: process.env.AGGREGATOR_URL + '/snapshot/',
       chainID: Number(process.env.PW_CORE_CHAIN_ID),
       ckbIndexerUrl: process.env.CKB_INDEXER_URL,
       ckbNodeUrl: process.env.CKB_NODE_URL,
@@ -247,9 +204,10 @@ export default Vue.extend({
       }
     },
 
-    verifySig() {
+    async verifySig() {
       try {
-        const ret = verifyUniPassSig(
+        const ret = await verifyUniPassSig(
+          this.username,
           this.message,
           JSON.parse(this.sig) as UPAuthResponse,
         )

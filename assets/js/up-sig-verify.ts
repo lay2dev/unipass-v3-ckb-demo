@@ -2,7 +2,7 @@ import { UPAuthResponse } from 'up-core-test'
 import axios from 'axios'
 import { createHash } from 'crypto'
 const NodeRSA = require('node-rsa')
-const AGGREGATOR_URL = 'https://t.aggregator.unipass.id/dev/'
+const AGGREGATOR_URL = process.env.AGGREGATOR_URL || 'https://t.aggregator.unipass.id/dev/'
 
 interface RSAPubkey {
   e: number
@@ -104,7 +104,10 @@ export async function verifyUniPassSig(
 ): Promise<boolean> {
   const { keyType, pubkey, sig } = authResp
 
-  await checkPubkeyOnChain(username, keyType, pubkey)
+  const isPubkeyOnChain = await checkPubkeyOnChain(username, keyType, pubkey)
+  if (!isPubkeyOnChain) {
+    throw new Error(`pubkey not valid on chain`)
+  }
 
   if (keyType === 'RsaPubkey') {
     const key = getPubkeyFromUPKey(pubkey)
