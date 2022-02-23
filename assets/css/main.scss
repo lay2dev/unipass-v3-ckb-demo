@@ -490,32 +490,32 @@ body {
 // pc css
 @media (min-width: 1024px) {
   // 滚动条
-  &::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     width: 4px;
     height: 4px;
   }
 
   // 失去焦点
-  &::-webkit-scrollbar-corner,
+  ::-webkit-scrollbar-corner,
   ::-webkit-scrollbar-thumb:window-inactive {
     background: rgba(102, 128, 153, 0.1);
   }
 
   // 滑块样式
-  &::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb {
     background: rgba(102, 128, 153, 0.3);
   }
 
-  &::-webkit-scrollbar-thumb:hover {
+  ::-webkit-scrollbar-thumb:hover {
     background: rgba(102, 128, 153, 0.5);
   }
 
-  &::-webkit-scrollbar-thumb:active {
+  ::-webkit-scrollbar-thumb:active {
     background: rgba(102, 128, 153, 0.6);
   }
 
   // 背景色
-  &::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track {
     background: transparent;
   }
 }

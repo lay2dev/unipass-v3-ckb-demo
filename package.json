@@ -38,10 +38,11 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.9.0",
-    "node-sass": "5.0.0",
     "nuxt": "^2.15.7",
     "nuxt-compress": "^5.0.0",
     "prettier": "^2.3.0",
+    "sass": "~1.32.6",
+    "sass-loader": "10.1.1",
     "stylus": "^0.54.8",
     "stylus-loader": "4.3.3"
   }
