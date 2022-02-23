@@ -27,7 +27,7 @@ async function fetchUserInfoOnChain(username: string) {
   const req = {
     id: 2,
     jsonrpc: '2.0',
-    method: 'get_user_info',
+    method: 'get_up_pending_user_info',
     params: [usernameHash],
   }
 
