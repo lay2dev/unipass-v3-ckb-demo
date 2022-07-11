@@ -11127,10 +11127,15 @@ up-ckb-alpha-test@^0.1.4:
     axios "^0.24.0"
     up-core-test "^0.1.5"
 
-up-core-test@^0.1.5, up-core-test@^0.1.6:
+up-core-test@^0.1.5:
   version "0.1.6"
   resolved "https://mirrors.cloud.tencent.com/npm/up-core-test/-/up-core-test-0.1.6.tgz#46d79bdbac6cc0ad26c47f7856ee893c77560f6b"
   integrity sha512-AhFnaYt/diMJoL2rwPYmVG9BPjq6ShpWC1PaR9fTCoIgUKbOUjSTxLXG19vXasjsyR3JihTHMjGrWUKB/TPZgQ==
+
+up-core-test@^0.1.9:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/up-core-test/-/up-core-test-0.1.10.tgz#e6f9683819e7170ad5a106a7d439eb478290c4d2"
+  integrity sha512-WjuaVDXMy2VgaOO0ngPtlkrV1Nrib44ChxEZwIQSf7rSiAkPSh4GXskEwRZAnB7oSMNHI2F2qdP5OcOxgI3HVQ==
 
 upath@^1.1.1:
   version "1.2.0"
